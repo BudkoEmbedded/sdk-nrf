@@ -22,8 +22,10 @@ manifest:
       url-base: https://github.com/nrfconnect
     - name: nrfcloud
       url-base: https://github.com/nRFCloud
-    - name: origin
+    - name: plskeggs
       url-base: https://github.com/plskeggs
+    - name: origin
+      url-base: https://github.com/BudkoEmbedded
     # Third-party repository sources:
     - name: zephyrproject
       url-base: https://github.com/zephyrproject-rtos
@@ -59,8 +61,8 @@ manifest:
     # https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/introduction/index.html
     # https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/guides/modules.html
     - name: zephyr
-      remote: nrfcloud
-      revision: feature-debug-improvements
+      remote: origin
+      revision: feature-debug-improvements-mesh
       repo-path: sdk-zephyr
       # master was: revision: af79106e4a0aa4396909a20a1bc245533e258676
       # gw-master was: revision: af79106e4a0aa4396909a20a1bc245533e258676

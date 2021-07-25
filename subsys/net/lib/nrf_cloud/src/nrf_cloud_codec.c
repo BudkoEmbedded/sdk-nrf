@@ -230,6 +230,7 @@ int nrf_cloud_decode_requested_state(const struct nrf_cloud_data *input,
 	}
 
 #ifdef CONFIG_NRF_CLOUD_GATEWAY
+#ifndef CONFIG_NRF_CLOUD_MESH_GATEWAY
 	int ret;
 
 	if (gateway_state_handler) {
@@ -243,6 +244,7 @@ int nrf_cloud_decode_requested_state(const struct nrf_cloud_data *input,
 		return -EINVAL;
 	}
 #endif
+#endif
 
 	nrf_cloud_decode_desired_obj(root_obj, &desired_obj);
 
@@ -251,8 +253,12 @@ int nrf_cloud_decode_requested_state(const struct nrf_cloud_data *input,
 	if (topic_prefix_obj != NULL) {
 
 #ifdef CONFIG_NRF_CLOUD_GATEWAY
-		set_gw_rx_topic(topic_prefix_obj->valuestring);
-		set_gw_tx_topic(topic_prefix_obj->valuestring);
+		//set_gw_rx_topic(topic_prefix_obj->valuestring);
+		//set_gw_tx_topic(topic_prefix_obj->valuestring);
+
+		// TODO: Temporarily use manually codec topic prefixes. Fix after gateway certs get setup.
+		set_gw_rx_topic("prod/3df5297b-6ea4-41f4-9d11-878bfc803656/m/");
+		set_gw_tx_topic("prod/3df5297b-6ea4-41f4-9d11-878bfc803656/m/");
 #endif
 		(*requested_state) = STATE_UA_PIN_COMPLETE;
 		cJSON_Delete(root_obj);
